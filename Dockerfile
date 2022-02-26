@@ -1,7 +1,8 @@
 FROM alpine:latest as builder
 WORKDIR /root
-RUN apk add --no-cache git make build-base && \
-    git clone --branch master --single-branch https://github.com/Wind4/vlmcsd.git && \
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
+    apk add --no-cache git make build-base && \
+    git clone --branch master --single-branch https://git.fiix.one/https://github.com/Wind4/vlmcsd.git && \
     cd vlmcsd/ && \
     make
 
